@@ -16,7 +16,7 @@ class PuntosReciclajeController extends Controller
     {
         $datos = PuntosReciclaje::all();
 
-        return view("puntosReciclaje")->with('datos', $datos);
+        return view("listaPuntosReciclaje")->with('datos', $datos);
     }
 
     /**
@@ -26,7 +26,7 @@ class PuntosReciclajeController extends Controller
      */
     public function create()
     {
-        //
+        return view("nuevoPuntoReciclaje");
     }
 
     /**
@@ -35,11 +35,15 @@ class PuntosReciclajeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        $dato = new PuntosReciclaje;
-        $dato->nombre = $req->nombre;
-        $dato->save();
+        $nuevopunto = new PuntosReciclaje;
+        $nuevopunto->tipo_basura = $req->tipobasura;
+        $nuevopunto->direccion = $req->direccion;
+        $nuevopunto->horario_apertura = $req->apertura;
+        $nuevopunto->horario_cierre = $req->cierre;
+
+        $nuevopunto->save();
         //Redirección
         return redirect('/puntosReciclaje');
     }
@@ -50,9 +54,11 @@ class PuntosReciclajeController extends Controller
      * @param  \App\PuntosReciclaje  $puntosReciclaje
      * @return \Illuminate\Http\Response
      */
-    public function show(PuntosReciclaje $puntosReciclaje)
+    public function show($id)
     {
-        //
+        $punto = PuntosReciclaje::find($id);
+
+        return view('editaPuntoReciclaje')->with('punto', $punto);
     }
 
     /**
@@ -73,10 +79,17 @@ class PuntosReciclajeController extends Controller
      * @param  \App\PuntosReciclaje  $puntosReciclaje
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PuntosReciclaje $puntosReciclaje)
+    public function update(Request $req)
     {
-        //
+        $punto = PuntosReciclaje::find($req->id);
+        $punto->tipo_basura = $req->tipobasura;
+        $punto->direccion = $req->direccion;
+        $punto->horario_apertura = $req->apertura;
+        $punto->horario_cierre = $req->cierre;
+        $punto->save();
+        return redirect('/puntosReciclaje');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -84,8 +97,10 @@ class PuntosReciclajeController extends Controller
      * @param  \App\PuntosReciclaje  $puntosReciclaje
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PuntosReciclaje $puntosReciclaje)
+    public function destroy($id)
     {
-        //
+        $punto = PuntosReciclaje::find($id);
+        $punto->delete();
+        return redirect('/puntosReciclaje');
     }
 }

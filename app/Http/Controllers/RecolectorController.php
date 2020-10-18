@@ -14,7 +14,9 @@ class RecolectorController extends Controller
      */
     public function index()
     {
-        //
+        $datos = Recolector::all();
+
+        return view("listaRecolectores")->with('datos', $datos);
     }
 
     /**
@@ -24,7 +26,7 @@ class RecolectorController extends Controller
      */
     public function create()
     {
-        //
+        return view("nuevoRecolector");
     }
 
     /**
@@ -33,9 +35,15 @@ class RecolectorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $req)
     {
-        //
+        $recolector = new Recolector;
+        $recolector->nombre = $req->nombre;
+        $recolector->dias_recoleccion = $req->dias_recoleccion;
+
+        $recolector->save();
+        //Redirección
+        return redirect('/recolector');
     }
 
     /**
@@ -44,9 +52,11 @@ class RecolectorController extends Controller
      * @param  \App\Recolector  $recolector
      * @return \Illuminate\Http\Response
      */
-    public function show(Recolector $recolector)
+    public function show($id)
     {
-        //
+        $recol = Recolector::find($id);
+
+        return view('editaRecolector')->with('recol', $recol);
     }
 
     /**
@@ -67,9 +77,13 @@ class RecolectorController extends Controller
      * @param  \App\Recolector  $recolector
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Recolector $recolector)
+    public function update(Request $req)
     {
-        //
+        $punto = Recolector::find($req->id);
+        $punto->nombre = $req->nombre;
+        $punto->dias_recoleccion = $req->dias_recoleccion;
+        $punto->save();
+        return redirect('/recolector');
     }
 
     /**
@@ -78,8 +92,10 @@ class RecolectorController extends Controller
      * @param  \App\Recolector  $recolector
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Recolector $recolector)
+    public function destroy($id)
     {
-        //
+        $punto = Recolector::find($id);
+        $punto->delete();
+        return redirect('/recolector');
     }
 }

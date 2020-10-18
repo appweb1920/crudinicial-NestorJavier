@@ -17,5 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('recolector', 'RecolectorController');
 Route::resource('puntosReciclaje', 'PuntosReciclajeController');
+Route::get('puntosReciclaje/lista', 'PuntosReciclajeController@lista');
+Route::post('puntosReciclaje/actualiza', 'PuntosReciclajeController@update');
+Route::get('/puntosReciclaje/elimina/{id}', 'PuntosReciclajeController@destroy');
+
+Route::resource('recolector', 'RecolectorController');
+Route::get('recolector/lista', 'RecolectorController@lista');
+Route::post('recolector/actualiza', 'RecolectorController@update');
+Route::get('/recolector/elimina/{id}', 'RecolectorController@destroy');
