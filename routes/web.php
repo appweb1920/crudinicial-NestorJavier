@@ -26,3 +26,5 @@ Route::resource('recolector', 'RecolectorController');
 Route::get('recolector/lista', 'RecolectorController@lista');
 Route::post('recolector/actualiza', 'RecolectorController@update');
 Route::get('/recolector/elimina/{id}', 'RecolectorController@destroy');
+
+Route::resource('puntosRecolector', 'PuntosRecolectorController');
