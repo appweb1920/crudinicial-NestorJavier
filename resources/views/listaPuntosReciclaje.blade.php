@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Muestra Puntos Reciclaje</h1>
-    <a href="/public/puntosReciclaje/create" class="btn btn-primary stretched-link">Crea Punto</a>
+    <a href="/public/puntosReciclaje/create" class="btn btn-primary">Crea Punto</a>
     <br>
     <br>
     <table class="table table-dark">

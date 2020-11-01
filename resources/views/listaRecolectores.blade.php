@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Muestra Recolectores</h1>
-    <a href="/public/recolector/create" class="btn btn-primary stretched-link">Crea Recolector</a>
+    <a href="/public/recolector/create" class="btn btn-primary">Crea Recolector</a>
     <br>
     <br>
     <table class="table table-dark">
