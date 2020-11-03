@@ -83,12 +83,13 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
-                <div class="links">
-                    <a href="puntosReciclaje">Puntos de Reciclaje</a>
-                    <a href="recolector">Recolectores</a>
-                    <a href="puntosRecolector">Relaciones</a>
-                </div>
+                @if (!is_null(Auth::user()))
+                    <div class="links">
+                        <a href="puntosReciclaje">Puntos de Reciclaje</a>
+                        <a href="recolector">Recolectores</a>
+                        <a href="puntosRecolector">Relaciones</a>
+                    </div>
+                @endif
             </div>
         </div>
     </body>

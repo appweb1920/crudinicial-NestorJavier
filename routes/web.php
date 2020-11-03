@@ -28,3 +28,7 @@ Route::post('recolector/actualiza', 'RecolectorController@update');
 Route::get('/recolector/elimina/{id}', 'RecolectorController@destroy');
 
 Route::resource('puntosRecolector', 'PuntosRecolectorController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
